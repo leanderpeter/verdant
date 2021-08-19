@@ -1,0 +1,8 @@
+flask==1.1.1
+Flask-Cors
+flask-restx
+mysql-connector-python
+google.auth
+requests
+pytest
+flask-login

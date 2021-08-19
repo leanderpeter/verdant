@@ -1,21 +1,17 @@
-import './App.css';
-import Stickyfooter from './components/footer';
-import SignUp from './components/signUp';
-import { CssBaseline, ThemeProvider } from '@material-ui/core';
-import Theme from './Theme';
+import "./App.css";
+import { CssBaseline, ThemeProvider } from "@material-ui/core";
+import Theme from "./Theme";
+import RecommenderLandingPage from "./components/recommenderPage";
 
 function App() {
   return (
     <div>
       <ThemeProvider theme={Theme}>
         <CssBaseline />
-          <SignUp/>
-          <Stickyfooter/>
+        <RecommenderLandingPage />
       </ThemeProvider>
     </div>
   );
 }
-
-
 
 export default App;
