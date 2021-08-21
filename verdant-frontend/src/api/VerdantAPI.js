@@ -24,12 +24,15 @@ export default class VerdantAPI {
     }
     return this.#api;
   }
-  /*
-	Gibt einen Error zuruck auf JSON Basis. fetch() gibt keine Errors wie 404 oder 500 zuruck. Deshaltb die func fetchAdvanced 
-	*/
+
+  /**
+   *  Returns a Promise which resolves to a json object.
+   *  The Promise returned from fetch() won’t reject on HTTP error status even if the response is an HTTP 404 or 500.
+   *  fetchAdvanced throws an Error also an server status errors
+   */
   #fetchAdvanced = (url, init) =>
-    fetch(url, init, { credentials: "include" }).then((res) => {
-      //fetch() gibt keine Errors wie 404 oder 500 zuruck
+    fetch(url, init).then((res) => {
+      // The Promise returned from fetch() won’t reject on HTTP error status even if the response is an HTTP 404 or 500.
       if (!res.ok) {
         throw Error(`${res.status} ${res.statusText}`);
       }
@@ -50,13 +53,14 @@ export default class VerdantAPI {
 
   getStockPrediction(stockArray) {
     return this.#fetchAdvanced(this.#StockPredictionURL(), {
-      method: "GET",
+      method: "PUT",
       headers: {
         Accept: "application/json, text/plain",
         "Content-type": "application/json",
       },
       body: JSON.stringify(stockArray),
     }).then((responseJSON) => {
+      console.log(responseJSON);
       // zuruck kommt ein array, wir benoetigen aber nur ein Objekt aus dem array
       let responseStockArray = InteractionsBO.fromJSON(responseJSON);
       return new Promise(function (resolve) {

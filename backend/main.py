@@ -43,6 +43,13 @@ interaction = api.inherit('Interaction', bo,  {
 
 })
 
+
+'''this needs to be fixed! ticker/average_rating etc needs to be changed to JS CamelCase.
+average_rating -> AverageRating
+++++
+BusinessObjects
+++++
+'''
 stock_metadata = api.inherit('StockMetadata', bo, {
     'ticker': fields.String(attribute='_ticker', description="Ticker Symbol of object"),
     'average_rating': fields.String(attribute='_average_rating', description="Average Rating of object"),
@@ -60,11 +67,14 @@ stock_metadata = api.inherit('StockMetadata', bo, {
 @verdantApp.response(500, 'Something went wrong')
 class RecommendationOperationen(Resource):
     @verdantApp.marshal_list_with(interaction)
-    def get(self):
-        request_list = list(api.payload)
-        adm = InteractionAdministration()
-        response = adm.predict(request_list)
-        return response
+    def put(self):
+        if api.payload != None:
+            request_list = list(api.payload)
+            adm = InteractionAdministration()
+            response = adm.predict(request_list)
+            return response
+        else:
+            return 404
 
 
 @verdantApp.route('/stocks/metadata')

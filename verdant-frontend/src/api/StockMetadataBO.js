@@ -1,6 +1,10 @@
 import BusinessObject from "./BusinessObject";
 
 export default class StockMetadataBO extends BusinessObject {
+  /**
+   * this needs to be fixed! AverageRating/MarcetCap etc needs to be changed in main.py .
+average_rating (python) -> AverageRating (JS)
+   */
   constructor(
     aTickerSymbol,
     aAverageRating,
@@ -13,7 +17,7 @@ export default class StockMetadataBO extends BusinessObject {
     aOverallRisk
   ) {
     super();
-    this.TickerSymbol = aTickerSymbol;
+    this.ticker = aTickerSymbol;
     this.AverageRating = aAverageRating;
     this.MarcetCap = aMarcetCap;
     this.AverageVolume = aAverageVolume;
@@ -25,11 +29,11 @@ export default class StockMetadataBO extends BusinessObject {
   }
 
   getTickerSymbol() {
-    return this.TickerSymbol;
+    return this.ticker;
   }
 
   setTickerSymbol(aTickerSymbol) {
-    this.TickerSymbol = aTickerSymbol;
+    this.ticker = aTickerSymbol;
   }
 
   getAverageRating() {
