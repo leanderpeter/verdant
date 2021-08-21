@@ -38,9 +38,8 @@ export default class VerdantAPI {
 
   //StocksMetadata
   getAllStockMetadata() {
-    return this.#fetchAdvanced("/verdantApp/stocks/metadata").then(
+    return this.#fetchAdvanced(this.#StockMetadataURL()).then(
       (responseJSON) => {
-        console.log(responseJSON);
         let stockBO = StockMetadataBO.fromJSON(responseJSON);
         return new Promise(function (resolve) {
           resolve(stockBO);

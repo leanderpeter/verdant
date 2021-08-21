@@ -63,6 +63,7 @@ export default function RecommenderLandingPage({}) {
           ticker: stock.getTickerSymbol(),
           interaction_name: stock.getTickerSymbol(),
         };
+        console.log(stock);
         stockList.push(tmp);
       });
       sendRequest(stockList);
@@ -71,12 +72,8 @@ export default function RecommenderLandingPage({}) {
     }
   };
 
-  console.log(stockChoosen);
-
   useEffect(() => {
     getAllStockMetadata();
-    console.log(stocksMetadata);
-    console.log(error);
   }, []);
 
   return (
