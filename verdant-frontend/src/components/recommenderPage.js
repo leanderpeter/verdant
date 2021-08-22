@@ -7,10 +7,13 @@ import VerdantAPI from "../api/VerdantAPI";
 import Button from "@material-ui/core/Button";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import RecommendationDialog from "../dialogs/RecommendationsDialog";
+import Copyright from "./footer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    //flexGrow: 1,
+    //minHeight: "100vh",
+    //maxHeight: "100vh",
   },
   paper: {
     padding: theme.spacing(2),
@@ -103,14 +106,14 @@ export default function RecommenderLandingPage({}) {
         direction="row"
         justify="center"
         alignItems="center"
-        style={{ minHeight: "100vh" }}
+        style={{ minHeight: "93vh" }}
       >
         <Grid
           container
           direction="column"
           justify="center"
           alignItems="center"
-          style={{ minHeight: "100vh" }}
+          style={{ minHeight: "93vh" }}
         >
           <Grid item>
             <h1>Verdant Stock-Picker Beta</h1>
@@ -127,7 +130,7 @@ export default function RecommenderLandingPage({}) {
                 <TextField
                   {...params}
                   variant="standard"
-                  label="Enter your favorite Stock Ticker"
+                  label="Enter your favorite stock symbols"
                   placeholder="TSLA, AMZN ..."
                 />
               )}
@@ -149,6 +152,7 @@ export default function RecommenderLandingPage({}) {
           />
         </Grid>
       </Grid>
+      <Copyright className={classes.root} />
     </div>
   );
 }

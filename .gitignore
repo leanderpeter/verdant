@@ -1,3 +1,4 @@
 *.pyc
 verdant-frontend/node_modules/*
 __pycache__/
+linode-1-pw

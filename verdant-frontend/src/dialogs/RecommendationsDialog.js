@@ -14,6 +14,7 @@ import AddIcon from "@material-ui/icons/Add";
 import Typography from "@material-ui/core/Typography";
 import { blue } from "@material-ui/core/colors";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import ShowChartIcon from "@material-ui/icons/ShowChart";
 
 const emails = ["username@gmail.com", "user02@gmail.com"];
 const useStyles = makeStyles({
@@ -26,13 +27,20 @@ const useStyles = makeStyles({
 export default function RecommendationDialog(props) {
   const classes = useStyles();
   const { onClose, selectedValue, open, stocks } = props;
-  console.log(stocks[0].ticker);
   const handleClose = () => {
     onClose(selectedValue);
   };
 
   const handleListItemClick = (value) => {
-    onClose(value);
+    //onClose(value);
+    console.log(value.ticker);
+    openInNewTab("https://finance.yahoo.com/quote/" + value.ticker);
+    //https://finance.yahoo.com/quote/TSLA/
+  };
+
+  const openInNewTab = (url) => {
+    const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+    if (newWindow) newWindow.opener = null;
   };
 
   return (
@@ -42,7 +50,7 @@ export default function RecommendationDialog(props) {
       open={open}
     >
       <DialogTitle id="simple-dialog-title">
-        Your stock recommondations:
+        Your stock recommendations:
       </DialogTitle>
       <List>
         {stocks.map((stock) => (
@@ -53,7 +61,7 @@ export default function RecommendationDialog(props) {
           >
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
-                <AccountBalanceIcon />
+                <ShowChartIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary={stock.ticker} />
