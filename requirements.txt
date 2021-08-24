@@ -6,3 +6,6 @@ google.auth
 requests
 pytest
 flask-login
+scipy
+pandas
+uwsgi
