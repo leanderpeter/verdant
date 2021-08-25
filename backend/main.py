@@ -6,7 +6,7 @@ from server.dtos.business_object_dtos import bo
 
 from server.recommender.lightfm_recommender import Recommender
 from server.interactions_administration import InteractionAdministration
-from flask import Flask, jsonify, make_response
+from flask import Flask, jsonify, make_response, send_from_directory, render_template
 from flask_cors import CORS
 from flask_restx import Api, Resource, fields
 from flask import request
@@ -63,6 +63,29 @@ stock_metadata = api.inherit('StockMetadata', bo, {
 })
 
 
+#@app.route('/')
+#class WelcomeRoute(Resource):
+#    def serve(path):
+#        if path != "" and os.path.exists(app.static_folder + '/' + path):
+#            return send_from_directory(app.static_folder, path)
+#        else:
+#            return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    #if path != "" and os.path.exists(app.static_folder + '/' + path):
+    #    return send_from_directory(app.static_folder, path)
+    #else:
+    return send_from_directory(app.static_folder, 'index.html')
+
+
+
+
+
+
+
+
 @verdantApp.route('/recommender')
 @verdantApp.response(500, 'Something went wrong')
 class RecommendationOperationen(Resource):
@@ -88,4 +111,5 @@ class MetadataOperationen(Resource):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    #app.run(debug=True)
+    app.run(host='0.0.0.0')
