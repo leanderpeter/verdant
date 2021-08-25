@@ -6,7 +6,7 @@ from server.dtos.business_object_dtos import bo
 
 from server.recommender.lightfm_recommender import Recommender
 from server.interactions_administration import InteractionAdministration
-from flask import Flask, jsonify, make_response, send_from_directory, render_template
+from flask import Flask, render_template
 from flask_cors import CORS
 from flask_restx import Api, Resource, fields
 from flask import request
@@ -20,7 +20,14 @@ print("Lets go...")
 # Des Weiteren wird das auf Flask aufbauende Flask-RestX verwendet
 
 """Flask wird hiermit instanziert"""
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static/build', static_url_path='/', template_folder="build")
+
+@app.route('/')
+def hello():
+    #return '<h1>Hi Leander!</h1>' 
+    return render_template('index.html')
+    #return app.send_static_file('index.html')
+
 
 CORS(app, support_credentials=True, resources={
      r'/verdantApp/*': {"origins": "*"}})
@@ -30,6 +37,8 @@ api = Api(app, version='0.1', title='Verdant API',
 
 """Namespaces"""
 verdantApp = api.namespace('verdantApp', description='Functions of verdantApp')
+
+
 
 
 """"Please, someone needs to fix the inheritance in server.dtos. that stuff is
@@ -61,26 +70,6 @@ stock_metadata = api.inherit('StockMetadata', bo, {
     'employees': fields.String(attribute='_employees', description="Employees of object"),
     'overall_risk': fields.String(attribute='_overall_risk', description="Overall risk of object"),
 })
-
-
-#@app.route('/')
-#class WelcomeRoute(Resource):
-#    def serve(path):
-#        if path != "" and os.path.exists(app.static_folder + '/' + path):
-#            return send_from_directory(app.static_folder, path)
-#        else:
-#            return send_from_directory(app.static_folder, 'index.html')
-
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def serve(path):
-    #if path != "" and os.path.exists(app.static_folder + '/' + path):
-    #    return send_from_directory(app.static_folder, path)
-    #else:
-    return send_from_directory(app.static_folder, 'index.html')
-
-
-
 
 
 

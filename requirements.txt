@@ -1,3 +1,4 @@
+wheel
 flask==1.1.1
 Flask-Cors
 flask-restx
@@ -9,3 +10,6 @@ flask-login
 scipy
 pandas
 uwsgi
+lightfm
+scikit-optimize
+tqdm
