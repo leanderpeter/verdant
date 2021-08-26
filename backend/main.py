@@ -20,7 +20,8 @@ print("Lets go...")
 # Des Weiteren wird das auf Flask aufbauende Flask-RestX verwendet
 
 """Flask wird hiermit instanziert"""
-app = Flask(__name__, static_folder='static/build', static_url_path='/', template_folder="build")
+#app = Flask(__name__, static_folder='static/build', static_url_path='/', template_folder="template")
+app = Flask(__name__, template_folder="template")
 
 @app.route('/')
 def hello():
