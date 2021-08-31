@@ -8,7 +8,7 @@ export default class VerdantAPI {
   static #api = null;
 
   // Lokales Python backend
-  #VerdantServerBaseURL = "/verdantApp";
+  #VerdantServerBaseURL = "";
 
   // ------------------------ GET ------------------------------
   //getStockMetadata: all

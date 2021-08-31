@@ -31,13 +31,13 @@ def hello():
 
 
 CORS(app, support_credentials=True, resources={
-     r'/verdantApp/*': {"origins": "*"}})
+     r'/*': {"origins": "*"}})
 
 api = Api(app, version='0.1', title='Verdant API',
           description='Web App for stock picking')
 
 """Namespaces"""
-verdantApp = api.namespace('verdantApp', description='Functions of verdantApp')
+verdantApp = api.namespace('', description='Functions of verdantApp')
 
 
 
